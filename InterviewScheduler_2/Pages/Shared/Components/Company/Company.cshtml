@@ -1,0 +1,50 @@
+﻿@model InterviewScheduler_2.Models.Company
+
+
+<form id="companyForm">
+    
+    <div class="form-group">
+        <label asp-for="CompanyName" class="control-label"></label>
+        <input asp-for="CompanyName" class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CompanyAddress" class="control-label"></label>
+        <input asp-for="CompanyAddress" class="form-control" />
+        <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CompanyCity" class="control-label"></label>
+        <input asp-for="CompanyCity" class="form-control" />
+        <span asp-validation-for="CompanyCity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" id="submitCompany" value="Add" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<script>
+    $(document).ready(
+        function(){
+            $('#submitCompany').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/ScheduleContent/Scheduler_Create?handler=CompanyCreate',
+                    type: 'POST',
+                    data: $('#companyForm').serialize(), 
+                    success: function (response) {
+                        $(document).trigger('companyCreated',[response]);
+
+                        $('.ShowCompanyCreate').hide();
+                    },
+                    error: function (error) {
+                     
+                        console.error('Error creating round:', error);
+                    }
+                });
+            });
+        });
+</script>

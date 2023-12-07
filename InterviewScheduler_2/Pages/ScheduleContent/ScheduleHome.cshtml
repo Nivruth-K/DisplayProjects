@@ -1,0 +1,56 @@
+﻿@page
+@model InterviewScheduler_2.Pages.ScheduleContent.ScheduleHomeModel
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h1>ScheduleHome</h1>
+            </div>
+    
+    </div>
+    <div class="row justify-content-end mb-3">
+        <div class="col-md-2">  <a asp-page="/Logout" class="btn btn-danger">Logout</a></div> 
+    </div>
+    <div class="row justify-content-center">
+      
+        <div class="card bg-secondary">
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-light">User Name: @Model.Greet_User_name</h3>
+                    <h4>Schedules List</h4>
+                    <div class="card-text justify-content-center ">
+                        @foreach (var item in Model.schedule_v_obj)
+                        {
+                            <div class="card bg-dark mb-2 mt-2">
+                                <div class="card-text text-info mb-3 mt-3">
+                                    <p>Time : @item.Scheduled_Date </p>
+                                    <p>User Name: @item.CompanyName</p>
+                                    <p>Round: @item.Round_Type</p>
+
+                                </div>
+                            </div>
+                            
+                        }
+                    </div>
+                </div>
+
+            </div>
+           
+          
+        </div>
+    </div>
+</div>
+
+
+   
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

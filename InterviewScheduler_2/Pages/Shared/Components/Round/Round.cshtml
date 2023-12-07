@@ -1,0 +1,37 @@
+﻿@model InterviewScheduler_2.Models.Round
+
+        <form id="roundForm" >
+  
+            <div class="form-group">
+                <label asp-for="Round_Type" class="control-label"></label>
+                <input asp-for="Round_Type" class="form-control" />
+                <span asp-validation-for="Round_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <input type="submit" id="submitRound"  value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+
+<script>
+    $(document).ready(function () {
+        $('#submitRound').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/ScheduleContent/Scheduler_Create?handler=RoundCreate',
+                type: 'POST',
+                data: $('#roundForm').serialize(), // Serialize the form data
+                success: function (response) {
+
+                    $(document).trigger('roundCreated', [response]);
+                  
+                    $('.ShowRoundCreate').hide();
+                },
+                error: function (error) {
+                    // Handle errors here
+                    console.error('Error creating round:', error);
+                }
+            });
+        });
+    });
+</script> 
+

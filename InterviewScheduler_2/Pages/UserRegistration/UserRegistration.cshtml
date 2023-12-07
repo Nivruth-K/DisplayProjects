@@ -1,0 +1,37 @@
+﻿@page
+@model InterviewScheduler_2.Pages.UserRegistration.UserRegistrationModel
+
+<div class="container">
+    <div class="row justify-content-center mb-5 bg-secondary">
+        <div class="col-md-6 bg-outline-dark">
+            <h1>User Registration</h1>
+            <form method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="User_obj.User_Name" class="control-label"></label>
+                    <input class="form-control" asp-for="User_obj.User_Name" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="User_obj.User_Password" class="control-label"></label>
+                    <input class="form-control" asp-for="User_obj.User_Password" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="User_obj.User_Email" class="control-label"></label>
+                    <input class="form-control" asp-for="User_obj.User_Email" />
+                </div>
+                <div class="form-group mb-3">
+                    <input type="submit" value="Sign in" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+      
+        <div class="col-md-2 ">
+            <p>Already Have an Account?</p>
+            <a asp-page="/UserRegistration/UserLogin" class="btn btn-outline-primary ml-2">Login in</a>
+        </div>
+    </div>
+</div>
+
+
